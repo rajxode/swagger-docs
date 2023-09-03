@@ -14,11 +14,13 @@ servers:
         enum:
           - v1
           - v2
+        default: v1
       #  protocols 
       protocol:
         enum:
           - http
           - https
+        default: http
 
 # for auth
 components:
