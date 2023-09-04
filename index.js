@@ -6,7 +6,8 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs')
 const swaggerDocument = YAML.load('./swagger.yaml')
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// rendering the swagger file
+app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // middleware to parse the incoming req with json payload
 app.use(express.json());
@@ -28,11 +29,6 @@ let array = [
         price:699
     },
 ]
-
-
-app.get('/',(req,res) => {
-    res.send('<h1>Hello welcome in new Swagger project</h1>');
-});
 
 app.get('/api/v1/greet',(req,res) => {
     res.send('greeting from Swagger');

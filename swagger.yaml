@@ -110,7 +110,7 @@ paths:
     get:
     # grouping the paths
       tags:
-        - Objects
+        - Req.Params
       summary: return an object containing a course based on courseId
       # for parameter passed inside the path
       parameters:
@@ -143,7 +143,7 @@ paths:
     # request type is post
     post:
       tags:
-        - Objects
+        - Req.Body
       summary: add a new course to the course array
       # type of data taken
       consumes:
@@ -191,7 +191,7 @@ paths:
   /query:
     get:
       tags:
-        - Objects
+        - Req.Query
       summary: returns an object containing query data
       parameters:
         - name: location
