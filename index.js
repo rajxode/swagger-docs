@@ -2,6 +2,8 @@ const express = require('express');
 
 const app = express();
 
+const PORT = 1000;
+
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs')
 const swaggerDocument = YAML.load('./swagger.yaml')
@@ -31,6 +33,10 @@ let array = [
         price:699
     },
 ]
+
+app.get('/',(req,res) => {
+    res.send('<h1>Hello, Plz visit to /api-docs for swagger docs</h1>')
+})
 
 app.get('/api/v1/greet',(req,res) => {
     res.send('greeting from Swagger');
@@ -79,6 +85,6 @@ app.post('/api/v1/uploadImage',(req,res) => {
 })
 
 
-app.listen(1000,() => {
-    console.log("server is running on port : 1000");
-});
+app.listen(PORT,() => {
+    console.log(`server is running on port : ${PORT}`);
+}); 
