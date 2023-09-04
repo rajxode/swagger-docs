@@ -4,11 +4,12 @@ const app = express();
 
 const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs')
-
 const swaggerDocument = YAML.load('./swagger.yaml')
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// middleware to parse the incoming req with json payload
+app.use(express.json());
 
 let array = [
     {
@@ -52,6 +53,11 @@ app.get('/api/v1/courses',(req,res) => {
 app.get('/api/v1/mycourses/:courseId',(req,res) => {
     const myCourse = array.find((course) => course.id === req.params.courseId);
     res.send(myCourse);
+});
+
+app.post('/api/v1/addcourse',(req,res) => {
+    array.push(req.body);
+    res.send(req.body);
 });
 
 app.listen(1000,() => {
