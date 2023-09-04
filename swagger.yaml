@@ -53,3 +53,28 @@ paths:
           description: Bad request
         500:
           description: Internal Server Error
+
+  /object:
+    get:
+    # grouping the paths
+      tags:
+        - Objects
+      summary: return an object
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
