@@ -45,8 +45,13 @@ app.get('/api/v1/object',(req,res) => {
     });
 });
 
-app.get('/api/v1/array',(req,res) => {
+app.get('/api/v1/courses',(req,res) => {
     res.send(array);
+});
+
+app.get('/api/v1/mycourses/:courseId',(req,res) => {
+    const myCourse = array.find((course) => course.id === req.params.courseId);
+    res.send(myCourse);
 });
 
 app.listen(1000,() => {

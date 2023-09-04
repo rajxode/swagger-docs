@@ -79,12 +79,12 @@ paths:
         500:
           description: Internal Server Error
   
-  /array:
+  /courses:
     get:
     # grouping the paths
       tags:
         - Arrays
-      summary: return an array of objects
+      summary: return an array of courses
       responses:
         200:
           description: Success, OK
@@ -101,6 +101,39 @@ paths:
                       type: string
                     price:
                       type: number
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
+
+  /mycourses/{courseId}:
+    get:
+    # grouping the paths
+      tags:
+        - Objects
+      summary: return an object containing a course based on courseId
+      # for parameter passed inside the path
+      parameters:
+        - name: courseId
+          in: path
+          required: true
+          default: 11
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  price:
+                    type: number
         400:
           description: Bad request
         500:
