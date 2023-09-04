@@ -6,11 +6,13 @@ const swaggerUi = require('swagger-ui-express');
 const YAML = require('yamljs')
 const swaggerDocument = YAML.load('./swagger.yaml')
 
-// rendering the swagger file
-app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+const fileUpload = require('express-fileupload');
 
+// rendering the swagger file
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 // middleware to parse the incoming req with json payload
 app.use(express.json());
+app.use(fileUpload());
 
 let array = [
     {
@@ -59,9 +61,23 @@ app.post('/api/v1/addcourse',(req,res) => {
 app.get('/api/v1/query', (req,res) => {
     let location = req.query.location;
     let device = req.query.device;
-
     res.send({ location , device });
 })
+
+app.post('/api/v1/uploadImage',(req,res) => {
+    // getting the uploaded file
+    const file = req.files.file;
+    // setting the path for the uploaded file
+    let path = __dirname + "/images/" + Date.now() + ".jpg";
+    // store the file in the path
+    file.mv(path, (err) => {
+        if(err){
+            console.log(err);
+        }
+        res.send(true);
+    })
+})
+
 
 app.listen(1000,() => {
     console.log("server is running on port : 1000");
