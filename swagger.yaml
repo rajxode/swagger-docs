@@ -78,3 +78,30 @@ paths:
           description: Bad request
         500:
           description: Internal Server Error
+  
+  /array:
+    get:
+    # grouping the paths
+      tags:
+        - Arrays
+      summary: return an array of objects
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    price:
+                      type: number
+        400:
+          description: Bad request
+        500:
+          description: Internal Server Error
