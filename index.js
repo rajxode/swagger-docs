@@ -60,6 +60,13 @@ app.post('/api/v1/addcourse',(req,res) => {
     res.send(req.body);
 });
 
+app.get('/api/v1/query', (req,res) => {
+    let location = req.query.location;
+    let device = req.query.device;
+
+    res.send({ location , device });
+})
+
 app.listen(1000,() => {
     console.log("server is running on port : 1000");
 });

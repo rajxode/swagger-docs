@@ -140,7 +140,7 @@ paths:
           description: Internal Server Error
 
   /addcourse:
-  # request type is post
+    # request type is post
     post:
       tags:
         - Objects
@@ -185,5 +185,40 @@ paths:
                     type: number
         400:
           description: Bad request
+        500:
+          description: Internal Server Error
+
+  /query:
+    get:
+      tags:
+        - Objects
+      summary: returns an object containing query data
+      parameters:
+        - name: location
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [delhi,mumbai,pune]
+        - name: device
+          in: query
+          required: true
+          schema:
+            type: string
+            enum: [mobile,web]
+      responses:
+        200:
+          description: Success, OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  location:
+                    type: string
+                  device:
+                    type: string
+        400:
+          description: Bad Request
         500:
           description: Internal Server Error
